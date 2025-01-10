@@ -6,25 +6,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(FruitAlreadyExistsException.class)
     public ResponseEntity<String> handleFruitAlreadyExistsException(FruitAlreadyExistsException ex) {
-        log.error( "Fruit conflict error" , ex.getMessage());
+        log.error( "Fruit conflict error" , ex);
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(FruitNotFouncException.class)
-    public ResponseEntity<String> handleFruitNotFouncException(FruitNotFouncException ex) {
-        log.error("Fruit not found error" , ex.getMessage());
+    @ExceptionHandler(FruitNotFoundException.class)
+    public ResponseEntity<String> handleFruitNotFoundException(FruitNotFoundException ex) {
+        log.error("Fruit not found error" , ex);
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        log.error( "An Unexpected error occured" , ex.getMessage());
+        log.error( "An Unexpected error occured" , ex);
         return new ResponseEntity<>("An unexpected error occured. " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
