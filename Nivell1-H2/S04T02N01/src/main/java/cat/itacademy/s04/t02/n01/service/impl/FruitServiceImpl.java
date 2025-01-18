@@ -22,8 +22,8 @@ public class FruitServiceImpl implements FruitService {
             throw new FruitAlreadyExistsException("The Fruit " + fruit.getName() + " already exists");
         });
         Fruit newFruit = Fruit.builder()
-                .name("Apple")
-                .kgQuantity(10)
+                .name(fruit.getName())
+                .kgQuantity(fruit.getKgQuantity())
                 .build();
         return fruitRepository.save(newFruit);
     }
