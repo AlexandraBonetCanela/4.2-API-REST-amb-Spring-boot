@@ -34,7 +34,7 @@ public class FruitServiceImpl implements FruitService {
                 .orElseThrow(()-> new FruitNotFoundException("Fruit with id " + fruit.getId() + " not found"));
         dbFruit.setName(fruit.getName());
         dbFruit.setKgQuantity(fruit.getKgQuantity());
-        return fruitRepository.save(fruit);
+        return fruitRepository.save(dbFruit);
     }
 
     @Override
