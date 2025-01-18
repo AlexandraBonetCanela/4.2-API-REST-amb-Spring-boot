@@ -21,7 +21,11 @@ public class FruitServiceImpl implements FruitService {
         fruitRepository.findByName(fruit.getName()).ifPresent(dupFruit -> {
             throw new FruitAlreadyExistsException("The Fruit " + fruit.getName() + " already exists");
         });
-        return fruitRepository.save(fruit);
+        Fruit newFruit = Fruit.builder()
+                .name("Apple")
+                .kgQuantity(10)
+                .build();
+        return fruitRepository.save(newFruit);
     }
 
     @Override

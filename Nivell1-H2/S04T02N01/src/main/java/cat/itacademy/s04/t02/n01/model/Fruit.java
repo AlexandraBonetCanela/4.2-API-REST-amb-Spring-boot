@@ -4,15 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @AllArgsConstructor
+@Builder
 public class Fruit {
 
     @Id
@@ -20,9 +20,11 @@ public class Fruit {
     private int id;
 
     @Setter
+    @NotBlank(message = "Name cannot be blank")
     private String name;
 
     @Setter
+    @Min(value = 1, message = "Quantity must be at least 1 kg")
     private int kgQuantity;
 
     @Override
